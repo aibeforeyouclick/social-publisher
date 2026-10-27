@@ -1,0 +1,88 @@
+== social-publisher-public v0.1 PROOF 2026-10-27T18:58:46+02:00 ==
+Python 3.14.7
+-- tests
+test_approve_needs_exact_yes_then_revoke (test_publisher.ApprovalAndRunTests.test_approve_needs_exact_yes_then_revoke) ... ok
+test_approve_refuses_without_tty_and_does_not_change_queue (test_publisher.ApprovalAndRunTests.test_approve_refuses_without_tty_and_does_not_change_queue) ... ok
+test_changing_content_targets_or_options_invalidates_approval (test_publisher.ApprovalAndRunTests.test_changing_content_targets_or_options_invalidates_approval) ... ok
+test_demo_queue_dry_run_all_platform_flows (test_publisher.ApprovalAndRunTests.test_demo_queue_dry_run_all_platform_flows) ... ok
+test_dry_run_does_not_touch_queue_or_open_sockets (test_publisher.ApprovalAndRunTests.test_dry_run_does_not_touch_queue_or_open_sockets) ... ok
+test_live_mode_is_not_implemented_anywhere (test_publisher.ApprovalAndRunTests.test_live_mode_is_not_implemented_anywhere) ... ok
+test_not_due_needs_all_flag (test_publisher.ApprovalAndRunTests.test_not_due_needs_all_flag) ... ok
+test_platforms_command_lists_all_six (test_publisher.ApprovalAndRunTests.test_platforms_command_lists_all_six) ... ok
+test_unapproved_is_skipped (test_publisher.ApprovalAndRunTests.test_unapproved_is_skipped) ... ok
+test_validation_errors_block_run (test_publisher.ApprovalAndRunTests.test_validation_errors_block_run) ... ok
+test_flow_stops_on_error_expired_timeout_and_quota (test_publisher.FlowTests.test_flow_stops_on_error_expired_timeout_and_quota) ... ok
+test_instagram_flow_shape_and_publish_only_after_finished (test_publisher.FlowTests.test_instagram_flow_shape_and_publish_only_after_finished) ... ok
+test_requests_hold_placeholders_only_and_no_forbidden_endpoints (test_publisher.FlowTests.test_requests_hold_placeholders_only_and_no_forbidden_endpoints) ... ok
+test_skeletons_raise_skeleton_error (test_publisher.FlowTests.test_skeletons_raise_skeleton_error) ... ok
+test_youtube_flow (test_publisher.FlowTests.test_youtube_flow) ... ok
+test_find_and_redact (test_publisher.SecretTests.test_find_and_redact) ... ok
+test_queue_with_secret_fails_and_is_not_saved (test_publisher.SecretTests.test_queue_with_secret_fails_and_is_not_saved) ... ok
+test_secret_wrapper_never_reveals (test_publisher.SecretTests.test_secret_wrapper_never_reveals) ... ok
+test_token_never_printed_or_logged_in_dry_run (test_publisher.SecretTests.test_token_never_printed_or_logged_in_dry_run) ... ok
+test_token_provider_env_and_bitwarden_without_running_either (test_publisher.SecretTests.test_token_provider_env_and_bitwarden_without_running_either) ... ok
+test_dry_run_never_imports_secrets_provider (test_publisher.StaticSafetyTests.test_dry_run_never_imports_secrets_provider) ... ok
+test_environment_only_read_in_secrets_provider (test_publisher.StaticSafetyTests.test_environment_only_read_in_secrets_provider) ... ok
+test_no_eval_exec_or_token_writes (test_publisher.StaticSafetyTests.test_no_eval_exec_or_token_writes) ... ok
+test_no_network_modules_imported_anywhere (test_publisher.StaticSafetyTests.test_no_network_modules_imported_anywhere) ... ok
+test_only_two_modules_may_spawn_processes (test_publisher.StaticSafetyTests.test_only_two_modules_may_spawn_processes) ... ok
+test_ai_flag_mandatory_and_false_needs_reason (test_publisher.ValidateTests.test_ai_flag_mandatory_and_false_needs_reason) ... ok
+test_good_image_and_reel (test_publisher.ValidateTests.test_good_image_and_reel) ... ok
+test_instagram_caption_limits (test_publisher.ValidateTests.test_instagram_caption_limits) ... ok
+test_media_outside_queue_folder_is_rejected (test_publisher.ValidateTests.test_media_outside_queue_folder_is_rejected) ... ok
+test_naive_time_and_missing_media (test_publisher.ValidateTests.test_naive_time_and_missing_media) ... ok
+test_rate_policy_is_per_platform (test_publisher.ValidateTests.test_rate_policy_is_per_platform) ... ok
+test_real_demo_reel_inspected_by_ffprobe (test_publisher.ValidateTests.test_real_demo_reel_inspected_by_ffprobe) ... ok
+test_real_reel_passes_instagram_and_spec_violations_fail (test_publisher.ValidateTests.test_real_reel_passes_instagram_and_spec_violations_fail) ... ok
+test_shipped_sample_queue_is_valid (test_publisher.ValidateTests.test_shipped_sample_queue_is_valid) ... ok
+test_skeleton_limits (test_publisher.ValidateTests.test_skeleton_limits) ... ok
+test_targets_required_known_unique (test_publisher.ValidateTests.test_targets_required_known_unique) ... ok
+test_tiktok_unaudited_cannot_go_public_and_ai_needs_caption (test_publisher.ValidateTests.test_tiktok_unaudited_cannot_go_public_and_ai_needs_caption) ... ok
+test_youtube_rules (test_publisher.ValidateTests.test_youtube_rules) ... ok
+
+----------------------------------------------------------------------
+Ran 38 tests in 0.931s
+
+OK
+-- platforms
+instagram  dry-run flow                 types=VIDEO,IMAGE  AI via is_ai_generated
+youtube    dry-run flow                 types=VIDEO        AI via status.containsSyntheticMedia
+facebook   validation only (skeleton)   types=VIDEO        AI via is_ai_generated
+tiktok     validation only (skeleton)   types=VIDEO        AI via caption text
+linkedin   validation only (skeleton)   types=VIDEO        AI via caption text
+x          validation only (skeleton)   types=VIDEO        AI via caption text
+-- validate
+warning [demo-reel-1] [instagram] edit lists and closed GOP are not verified
+warning [demo-reel-1] [tiktok] max duration comes from creator_info at live time; consent UI duties are the operator's (see docs/PLATFORM-MATRIX.md)
+warning [demo-image-1] [instagram] MPO/JPS variants and sRGB colour space are not verified
+validate: 0 error(s), 3 warning(s)
+-- run demo-approved
+DRY-RUN (no network, nothing is sent) now=2026-10-24T20:00:00+03:00
+
+[WOULD_PUBLISH] id=demo-reel-1 type=VIDEO targets=instagram,youtube,tiktok at=2026-10-24T10:00:00+03:00 AI=True
+  media=demo_reel.mp4
+  caption='Demo clip, fictional data. AI-generated. #demo'
+  reason: approved, valid, due
+  >> [instagram] {"step": "0 quota check", "method": "GET", "url": "https://graph.instagram.com/v26.0/<IG_USER_ID>/content_publishing_limit?fields=quota_usage,config", "headers": {"Authorization": "Be
+  >> [instagram] {"step": "1 create container", "method": "POST", "url": "https://graph.instagram.com/v26.0/<IG_USER_ID>/media", "headers": {"Authorization": "Bearer <ACCESS_TOKEN>", "Content-Type": "
+  >> [instagram] {"step": "2 status poll", "method": "GET", "url": "https://graph.instagram.com/v26.0/<IG_CONTAINER_ID>?fields=status_code", "headers": {"Authorization": "Bearer <ACCESS_TOKEN>"}, "pol
+  >> [instagram] {"step": "3 publish", "method": "POST", "url": "https://graph.instagram.com/v26.0/<IG_USER_ID>/media_publish", "headers": {"Authorization": "Bearer <ACCESS_TOKEN>", "Content-Type": "a
+  [instagram] simulated flow against mock answers: ok
+  >> [youtube] {"step": "1 init resumable upload", "method": "POST", "url": "https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status", "headers": {"Authorization":
+  >> [youtube] {"step": "2 upload bytes", "method": "PUT", "url": "<UPLOAD_URL>", "headers": {"Content-Type": "video/*"}, "body_file": "demo_reel.mp4", "capture": {"YT_VIDEO_ID": "id"}}
+  [youtube] simulated flow against mock answers: ok
+  [tiktok] SKELETON: tiktok: request flow not implemented yet (validation only)
+
+[WOULD_PUBLISH] id=demo-image-1 type=IMAGE targets=instagram at=2026-10-24T15:00:00+03:00 AI=True
+  media=demo_image.jpg
+  caption='Demo image, fictional data. #demo'
+  reason: approved, valid, due
+  >> [instagram] {"step": "0 quota check", "method": "GET", "url": "https://graph.instagram.com/v26.0/<IG_USER_ID>/content_publishing_limit?fields=quota_usage,config", "headers": {"Authorization": "Be
+  >> [instagram] {"step": "1 create container", "method": "POST", "url": "https://graph.instagram.com/v26.0/<IG_USER_ID>/media", "headers": {"Authorization": "Bearer <ACCESS_TOKEN>", "Content-Type": "
+  >> [instagram] {"step": "3 publish", "method": "POST", "url": "https://graph.instagram.com/v26.0/<IG_USER_ID>/media_publish", "headers": {"Authorization": "Bearer <ACCESS_TOKEN>", "Content-Type": "a
+  [instagram] simulated flow against mock answers: ok
+
+DRY-RUN done: 2 post(s) would be published, 0 requests sent
+-- run --live
+ERROR: live mode is not implemented in v0.1 (see README, section 'Going live')
+exit=3

@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+logs/
+*.tmp
+.env
+.env.*
+*.token
+secrets/
+# real media and real queues never go to git; only the fictional samples/ and queue.json demo are tracked
+media/
+queue.local.json

@@ -1,0 +1,31 @@
+{
+  "posts": [
+    {
+      "id": "demo-reel-1",
+      "type": "VIDEO",
+      "media_path": "samples/demo_reel.mp4",
+      "title": "Demo short (fictional)",
+      "caption": "Demo clip, fictional data. AI-generated. #demo",
+      "scheduled_at": "2026-11-02T16:00:00+02:00",
+      "targets": ["instagram", "youtube", "tiktok"],
+      "options": {
+        "youtube": {"privacy": "private", "made_for_kids": false},
+        "tiktok": {"privacy_level": "SELF_ONLY"}
+      },
+      "is_ai_generated": true,
+      "status": "draft",
+      "approved": false
+    },
+    {
+      "id": "demo-image-1",
+      "type": "IMAGE",
+      "media_path": "samples/demo_image.jpg",
+      "caption": "Demo image, fictional data. #demo",
+      "scheduled_at": "2026-11-03T16:00:00+02:00",
+      "targets": ["instagram"],
+      "is_ai_generated": true,
+      "status": "draft",
+      "approved": false
+    }
+  ]
+}
